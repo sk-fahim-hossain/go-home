@@ -1,0 +1,26 @@
+.form{
+    padding: 20px;
+    border: 1px solid lightgrey;
+}
+.google-authentication{
+    border: 1px solid grey;
+    width: 70%;
+    height: 34px;
+    padding: 2px 5px;
+    border-radius:30px;
+    margin: 0 auto;
+    cursor: pointer;
+}
+.google-authentication img{
+    width: 25px;
+    height: 25px;
+}
+.google-authentication p{
+    font-weight: 500;
+    margin-top:12px
+}
+.google-authentication:hover{
+    background-color: #0B5ED7;
+    color: white;
+    border: none;
+}

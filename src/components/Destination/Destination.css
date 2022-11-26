@@ -1,0 +1,9 @@
+.destination-form{
+   background:lightgrey;
+   height: 100%;
+   border-radius:5px;
+}
+.map img{
+    width:100%;
+    height:90%;
+}

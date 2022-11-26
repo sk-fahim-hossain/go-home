@@ -1,0 +1,26 @@
+.home-page{
+    background-image: url('../../images/Bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width:100%;
+    height:800px;
+}
+.frame{
+    background-color: white;
+    padding: 20px;
+    border-radius:10px;
+    cursor: pointer;
+}
+.frame:hover{
+    box-shadow: 3px 3px 11px 6px #6fb0ed;
+}
+.frame img{
+    width: 100px;
+    height: 100px;
+}
+.frame h5{
+    margin-top:5px;
+}
+.frame-row{
+    padding-top: 200px;
+}

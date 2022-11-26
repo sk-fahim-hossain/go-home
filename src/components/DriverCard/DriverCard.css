@@ -1,0 +1,7 @@
+.driver-card img{
+    width: 50px;
+}
+.item{
+    border-radius:10px;
+    cursor: pointer;
+}
