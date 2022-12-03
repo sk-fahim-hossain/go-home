@@ -5,15 +5,21 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link, useNavigate } from 'react-router-dom';
 import './Header.css';
-
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from './../../../config.firebseInit';
+import { useSignOut } from 'react-firebase-hooks/auth';
 
 const Header = () => {
+    const [user, loading, error] = useAuthState(auth);
+    const [signOut, errorSignOut] = useSignOut(auth);
     const navigate = useNavigate();
 
-    const loginNavigate = () => {
-        // navigate('/login');
-        console.log("click")
+    const  handleSignOut = async ()=>{
+       await signOut();
     }
+   
+   
+    
     return (
         <div>
             <Navbar className="nav-bar"collapseOnSelect expand="lg" scrolling dark>
@@ -26,7 +32,12 @@ const Header = () => {
                             <Nav.Link href="/destination"><Link to="/destination" style={{textDecoration:'none',color:'grey'}}>Destination</Link></Nav.Link>
                             <Nav.Link href="/blog"><Link to="/blog" style={{textDecoration:'none',color:'grey'}}>Blog</Link></Nav.Link>
                             <Nav.Link href="/contact"><Link to="/contact" style={{textDecoration:'none',color:'grey'}}>Contact</Link></Nav.Link>
-                            <Nav.Link href="/login"><Link to="/login" style={{textDecoration:'none',color:'grey'}}><Button variant="primary">Login</Button></Link></Nav.Link>
+                            {
+                                user ?
+                                <button className="btn btn-primary" onClick={handleSignOut}>{user?.displayName}</button>
+                                :
+                                <Nav.Link href="/login"><Link to="/login" style={{textDecoration:'none',color:'grey'}}>Login</Link></Nav.Link>
+                            }
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

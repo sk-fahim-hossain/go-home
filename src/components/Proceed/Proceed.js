@@ -9,6 +9,7 @@ import trainImg from '../../images/Frame-3.png';
 import './Proceed.css';
 
 const Proceed = () => {
+    // location from contextApi
     const { location, vehicle } = useContext(AppContext);
     const [driverDetails, setDriverDetails] = useState([]);
 
