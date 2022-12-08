@@ -4,13 +4,14 @@ import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
 import icon from '../../images/google-icon.png';
 import './Registration.css';
-import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSignInWithGoogle, useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../config.firebseInit';
 import { useCreateUserWithEmailAndPassword,useUpdateProfile } from 'react-firebase-hooks/auth';
 
 
 const Registration = () => {
     const [signInWithGoogle, userGoogle, loadingGoogle, errorGoogle] = useSignInWithGoogle(auth);
+    const [userVerify] = useAuthState(auth);
     const [
         createUserWithEmailAndPassword,
         user,
@@ -19,7 +20,9 @@ const Registration = () => {
       ] = useCreateUserWithEmailAndPassword(auth);
     const navigate = useNavigate();
     const [updateProfile, updating, errorName] = useUpdateProfile(auth);
-
+      if(userVerify){
+        navigate("/")
+      }
     const nameRef = useRef('');
     const emailRef = useRef('');
     const passRef = useRef('');

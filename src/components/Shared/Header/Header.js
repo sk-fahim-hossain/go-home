@@ -33,7 +33,7 @@ const Header = () => {
                             <Nav.Link href="/blog"><Link to="/blog" style={{textDecoration:'none',color:'grey'}}>Blog</Link></Nav.Link>
                             <Nav.Link href="/contact"><Link to="/contact" style={{textDecoration:'none',color:'grey'}}>Contact</Link></Nav.Link>
                             {
-                                user ?
+                                user?.displayName?
                                 <button className="btn btn-primary" onClick={handleSignOut}>{user?.displayName}</button>
                                 :
                                 <Nav.Link href="/login"><Link to="/login" style={{textDecoration:'none',color:'grey'}}>Login</Link></Nav.Link>

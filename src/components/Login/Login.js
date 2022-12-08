@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import icon from '../../images/google-icon.png';
-import { useSignInWithGoogle,useSignInWithEmailAndPassword  } from 'react-firebase-hooks/auth';
+import { useSignInWithGoogle, useSignInWithEmailAndPassword, useAuthState } from 'react-firebase-hooks/auth';
 import auth from './../../config.firebseInit';
 
 
@@ -12,6 +12,7 @@ import auth from './../../config.firebseInit';
 
 const Login = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+    const [userVerify] = useAuthState(auth);
     const [
         signInWithEmailAndPassword,
         userLogin,
@@ -19,9 +20,7 @@ const Login = () => {
         errorLogin,
       ] = useSignInWithEmailAndPassword(auth);
     const navigate = useNavigate();
-    // const location = useLocation();
-    // const history = useLocation();
-    // const from = location?.state?.from?.pathname || "/";
+   
     const emailRef = useRef('');
     const passRef = useRef('');
 
@@ -29,24 +28,20 @@ const Login = () => {
         navigate("/registration")
     }
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
         const email = emailRef.current.value;
         const password = passRef.current.value;
-        signInWithEmailAndPassword(email,password);
-
-
+        await signInWithEmailAndPassword(email,password);
+        console.log(email,password)
+        
     }
     const handleGoogle =()=>{
         signInWithGoogle()
-        // .then(()=>{
-        //     navigate(from);
-        // })
     }
-    // if (user) {
-    //     // not logged in so redirect to login page with the return url
-    //     return <Navigate state={{ from: history.location }} />
-    // }
+    if(userVerify){
+        navigate(-1)
+    }
     return (
         <div className="container">
             <div className="w-50 mx-auto mt-4 form">
