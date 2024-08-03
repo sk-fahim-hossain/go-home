@@ -1,0 +1,13 @@
+
+.driver-card{
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+.person-wrapper{
+    display: flex;
+}
+.person-wrapper img{
+    width: 20px;
+    height: 20px;
+}
